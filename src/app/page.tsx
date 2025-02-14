@@ -1,16 +1,41 @@
-import { Button } from "@/components/ui/button";
+import CenterHeroBanner from "@/components/CenterHeroBanner";
+import WorldOfPlay from "@/components/WorldOfPlay";
+import { client } from "@/lib/api";
+import { HeroBannerData, WorldOfPlayData } from "@/lib/types";
+import { GET_HOME_PAGE } from "@/Queries/HomePage.query";
 
-export default function Home() {
+export default async function Home() {
+  const { data } = await client.query({ query: GET_HOME_PAGE });
+
+  interface HeroBanner extends HeroBannerData {
+    __typename: "HeroBanner";
+  }
+
+  interface WorldOfPlay extends WorldOfPlayData {
+    __typename: "WorldOfPlay";
+  }
+
+  type ModuleType = HeroBanner | WorldOfPlay;
+
+  const renderModule = (module: ModuleType) => {
+    switch (module.__typename) {
+      case "HeroBanner":
+        return <CenterHeroBanner data={module} />;
+
+      case "WorldOfPlay":
+        return <WorldOfPlay data={module} />;
+
+      default:
+        return null;
+    }
+  };
   return (
     <div className="max-w-2xl mx-auto">
-      <h2 className="text-3xl font-bold mb-4">Welcome to My Blog App</h2>
-      <p className="text-muted-foreground mb-6">
-        This is Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-        cumque alias unde quibusdam sapiente officia, atque praesentium libero
-        magni, voluptatibus doloremque ab laudantium repudiandae at, soluta
-        distinctio omnis vero culpa.
-      </p>
-      <Button>Get Started</Button>
+      {data?.pageCollection?.items[0]?.modulesCollection?.items.map(
+        (module: ModuleType, index: number) => (
+          <div key={index}>{renderModule(module)}</div>
+        )
+      )}
     </div>
   );
 }
