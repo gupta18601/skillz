@@ -12,6 +12,8 @@ export const GET_HOME_PAGE = gql`
             ... on HeroBanner {
               title
               description
+              alignment
+              headingTop
               image {
                 url
               }

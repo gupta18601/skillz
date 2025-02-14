@@ -30,7 +30,7 @@ export default async function Home() {
     }
   };
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="mx-auto">
       {data?.pageCollection?.items[0]?.modulesCollection?.items.map(
         (module: ModuleType, index: number) => (
           <div key={index}>{renderModule(module)}</div>

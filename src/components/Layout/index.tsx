@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
+    <>
       <header className="border-b border-border">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
@@ -26,7 +26,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
         </div>
       </header>
-      <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
+      {children}
       <footer className="border-t border-border">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
@@ -47,7 +47,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
