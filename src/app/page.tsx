@@ -1,7 +1,14 @@
 import CenterHeroBanner from "@/components/CenterHeroBanner";
+import Hiring from "@/components/Hiring";
+import News from "@/components/News";
 import WorldOfPlay from "@/components/WorldOfPlay";
 import { client } from "@/lib/api";
-import { HeroBannerData, WorldOfPlayData } from "@/lib/types";
+import {
+  HeroBannerData,
+  WorldOfPlayData,
+  HiringData,
+  NewsData,
+} from "@/lib/types";
 import { GET_HOME_PAGE } from "@/Queries/HomePage.query";
 
 export default async function Home() {
@@ -14,8 +21,14 @@ export default async function Home() {
   interface WorldOfPlay extends WorldOfPlayData {
     __typename: "WorldOfPlay";
   }
+  interface Hiring extends HiringData {
+    __typename: "Hiring";
+  }
+  interface News extends NewsData {
+    __typename: "News";
+  }
 
-  type ModuleType = HeroBanner | WorldOfPlay;
+  type ModuleType = HeroBanner | WorldOfPlay | Hiring | News;
 
   const renderModule = (module: ModuleType) => {
     switch (module.__typename) {
@@ -25,6 +38,10 @@ export default async function Home() {
       case "WorldOfPlay":
         return <WorldOfPlay data={module} />;
 
+      case "Hiring":
+        return <Hiring data={module} />;
+      case "News":
+        return <News data={module} />;
       default:
         return null;
     }

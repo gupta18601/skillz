@@ -37,6 +37,32 @@ export const GET_HOME_PAGE = gql`
                 }
               }
             }
+            ... on Hiring {
+              title
+              description
+              image {
+                url
+              }
+              ctAsCollection {
+                items {
+                  _id
+                  label
+                  url
+                }
+              }
+            }
+            ... on News {
+              title
+              contentCollection {
+                items {
+                  image {
+                    url
+                  }
+                  date
+                  description
+                }
+              }
+            }
           }
         }
       }

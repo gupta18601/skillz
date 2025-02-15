@@ -11,13 +11,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <h1 className="text-2xl font-bold">Skillz</h1>
             <nav className="flex gap-2">
               <Button variant="ghost" asChild>
-                <Link href="/">Players</Link>
+                <Link href="/players">Players</Link>
               </Button>
               <Button variant="ghost" asChild>
-                <Link href="/about">Developers</Link>
+                <Link href="/developers">Developers</Link>
               </Button>
               <Button variant="ghost" asChild>
-                <Link href="/posts">About Us</Link>
+                <Link href="/about-us">About Us</Link>
               </Button>
               <Button variant="ghost" asChild>
                 <Link href="/contact">Careers</Link>

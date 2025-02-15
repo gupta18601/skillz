@@ -30,3 +30,33 @@ export interface WorldOfPlayData {
     items: ImageItem[];
   };
 }
+
+export interface HiringData {
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+  ctAsCollection: {
+    items: {
+      _id: string;
+      label: string;
+      url: string;
+    }[];
+  };
+}
+
+interface ContentItem {
+  image: {
+    url: string;
+  };
+  date: string;
+  description: string;
+}
+
+export interface NewsData {
+  title: string;
+  contentCollection: {
+    items: ContentItem[];
+  };
+}

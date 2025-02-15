@@ -7,7 +7,7 @@ interface CenterHeroBannerProps {
 const CenterHeroBanner: React.FC<CenterHeroBannerProps> = async ({ data }) => {
   return (
     <>
-      <section className="relative flex items-center justify-center h-screen bg-black text-white">
+      <section className="relative flex items-center justify-center h-screen bg-black text-white mb-20">
         {data.image?.url ? (
           <video
             autoPlay
