@@ -6,7 +6,7 @@ export const GET_HOME_PAGE = gql`
       items {
         pageTitle
         slug
-        modulesCollection(limit: 5) {
+        modulesCollection(limit: 10) {
           items {
             __typename
             ... on HeroBanner {
@@ -60,6 +60,15 @@ export const GET_HOME_PAGE = gql`
                   }
                   date
                   description
+                }
+              }
+            }
+            ... on Faq {
+              title
+              questionCollection {
+                items {
+                  question
+                  answer
                 }
               }
             }

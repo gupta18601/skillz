@@ -60,3 +60,15 @@ export interface NewsData {
     items: ContentItem[];
   };
 }
+
+export interface FaqData {
+  title: string;
+  questionCollection: {
+    items: QuestionItem[];
+  };
+}
+
+interface QuestionItem {
+  question: string;
+  answer: string;
+}
