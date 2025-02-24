@@ -1,21 +1,17 @@
 "use client";
-
+import { useRef } from "react";
+import Image from "next/image";
 import { NewsData } from "@/lib/types";
 import { format } from "date-fns";
-import Image from "next/image";
-import { useRef, useState } from "react";
 
 interface NewsProps {
   data: NewsData;
 }
 
 const News: React.FC<NewsProps> = ({ data }) => {
-  if (!data) return null;
-
   const { title, contentCollection } = data;
   const scrollContainer = useRef<HTMLDivElement>(null);
-  const [scrollIndex, setScrollIndex] = useState(0);
-  const cardWidth = 350; // Width of each card including margin
+  const cardWidth = 350;
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainer.current) {
@@ -23,16 +19,6 @@ const News: React.FC<NewsProps> = ({ data }) => {
       scrollContainer.current.scrollBy({
         left: scrollAmount,
         behavior: "smooth",
-      });
-
-      // Infinite scrolling behavior
-      const totalCards = contentCollection.items.length;
-      setScrollIndex((prevIndex) => {
-        if (direction === "right") {
-          return prevIndex + 1 >= totalCards ? 0 : prevIndex + 1;
-        } else {
-          return prevIndex - 1 < 0 ? totalCards - 1 : prevIndex - 1;
-        }
       });
     }
   };

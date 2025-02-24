@@ -1,33 +1,34 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { GET_HEADER } from "@/Queries/Header.query";
+import { client } from "@/lib/api";
+import Image from "next/image";
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Layout: React.FC<{ children: React.ReactNode }> = async ({
+  children,
+}) => {
+  const { data } = await client.query({ query: GET_HEADER });
+  const navBarLinks: { url: string; label: string }[] =
+    data.headerCollection.items[0].navBarLinkCollection.items;
+
   return (
     <>
       <header className="border-b border-border">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold">Skillz</h1>
+            <Image
+              src={data.headerCollection.items[0].logo.url}
+              alt="Skillz Logo"
+              width={140}
+              height={120}
+            />
             <nav className="flex gap-2">
-              <Button variant="ghost" asChild>
-                <Link href="/players">Players</Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link href="/developers">Developers</Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link href="/about-us">About Us</Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link href="/contact">Careers</Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link href="/investors">Investors</Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link href="/games">Games</Link>
-              </Button>
+              {navBarLinks.map((link, index) => (
+                <Button key={index} variant="ghost" asChild>
+                  <Link href={link.url}>{link.label}</Link>
+                </Button>
+              ))}
             </nav>
           </div>
         </div>

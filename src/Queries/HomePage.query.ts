@@ -72,6 +72,20 @@ export const GET_HOME_PAGE = gql`
                 }
               }
             }
+            ... on ExploreGames {
+              backgroundVideo {
+                url
+              }
+              image {
+                url
+              }
+              ctaCollection {
+                items {
+                  label
+                  url
+                }
+              }
+            }
           }
         }
       }

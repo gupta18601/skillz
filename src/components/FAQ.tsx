@@ -7,8 +7,8 @@ interface FAQProps {
 
 const FAQ: React.FC<FAQProps> = ({ data }) => {
   return (
-    <div className="max-w-2xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 mt-20px">{data.title}</h2>
+    <div className="max-w-2xl mx-auto mt-20">
+      <h2 className="text-3xl font-bold mb-6">{data.title}</h2>
       {data.questionCollection.items.map((item, index) => (
         <div key={index} className="border-b border-gray-300 py-4">
           <details className="group">

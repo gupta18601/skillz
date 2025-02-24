@@ -4,4 +4,5 @@ export enum ContentModules {
   Hiring = "Hiring",
   News = "News",
   Faq = "Faq",
+  ExploreGames = "ExploreGames",
 }

@@ -1,4 +1,5 @@
 import CenterHeroBanner from "@/components/CenterHeroBanner";
+import ExploreGames from "@/components/ExploreGames";
 import FAQ from "@/components/FAQ";
 import Hiring from "@/components/Hiring";
 import News from "@/components/News";
@@ -10,6 +11,7 @@ import {
   HiringData,
   NewsData,
   FaqData,
+  ExploreGamesData,
 } from "@/lib/types";
 import { GET_HOME_PAGE } from "@/Queries/HomePage.query";
 
@@ -29,14 +31,22 @@ export default async function Home() {
   interface News extends NewsData {
     __typename: "News";
   }
-  interface FAQ extends FaqData {
+  interface ExploreGames extends ExploreGamesData {
+    __typename: "ExploreGames";
+  }
+  interface Faq extends FaqData {
     __typename: "Faq";
   }
 
-  type ModuleType = HeroBanner | WorldOfPlay | Hiring | News | Faq;
+  type ModuleType =
+    | HeroBanner
+    | WorldOfPlay
+    | Hiring
+    | News
+    | ExploreGames
+    | Faq;
 
   const renderModule = (module: ModuleType) => {
-    console.log(module.__typename);
     switch (module.__typename) {
       case "HeroBanner":
         return <CenterHeroBanner data={module} />;
@@ -48,6 +58,8 @@ export default async function Home() {
         return <Hiring data={module} />;
       case "News":
         return <News data={module} />;
+      case "ExploreGames":
+        return <ExploreGames data={module} />;
       case "Faq":
         return <FAQ data={module} />;
       default:

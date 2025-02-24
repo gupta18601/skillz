@@ -72,3 +72,41 @@ interface QuestionItem {
   question: string;
   answer: string;
 }
+
+export interface ExploreGamesData {
+  backgroundVideo: {
+    url: string;
+  };
+  image: {
+    url: string;
+  };
+  ctaCollection: {
+    items: CtaItem[];
+  };
+}
+
+interface CtaItem {
+  _id: number;
+  label: string;
+  url: string;
+}
+
+export interface Header {
+  logo: {
+    url: string;
+  };
+  navBarLinkCollection: {
+    items: NavBarLink[];
+  };
+}
+
+export interface NavBarLink {
+  label: string;
+  url: string;
+}
+
+export interface GetHeaderResponse {
+  headerCollection: {
+    items: Header[];
+  };
+}
